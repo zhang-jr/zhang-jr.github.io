@@ -1,0 +1,45 @@
+---
+import { SITE } from '@data/site';
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <p>© {year} {SITE.name} · All rights reserved.</p>
+  <div class="footer-stack">
+    <span>Hosted on</span>
+    <span class="stack-badge">GitHub Pages</span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding: 24px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .footer-stack {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.65rem;
+    color: var(--muted);
+  }
+  .stack-badge {
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    footer { flex-direction: column; gap: 12px; padding: 24px; }
+  }
+</style>

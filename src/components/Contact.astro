@@ -1,0 +1,97 @@
+---
+import { CONTACT } from '@data/site';
+
+const links = [
+  { label: 'Email',     value: CONTACT.email,            href: `mailto:${CONTACT.email}`,   external: false },
+  { label: 'GitHub',    value: CONTACT.github.label,     href: CONTACT.github.href,          external: true  },
+  { label: 'LinkedIn',  value: CONTACT.linkedin.label,   href: CONTACT.linkedin.href,        external: true  },
+  { label: 'X / Twitter', value: CONTACT.twitter.label, href: CONTACT.twitter.href,         external: true  },
+];
+---
+
+<section id="contact">
+  <div class="fade-up">
+    <div class="section-tag">// 04 · Contact</div>
+    <p class="contact-cta">Let's<br/>build<br/><span>together.</span></p>
+  </div>
+
+  <div class="contact-links fade-up">
+    {links.map(({ label, value, href, external }) => (
+      <a
+        href={href}
+        class="contact-link"
+        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      >
+        <div class="contact-link-info">
+          <span class="contact-link-label">{label}</span>
+          <span class="contact-link-value">{value}</span>
+        </div>
+        <span class="contact-link-arrow">↗</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  #contact {
+    padding: 120px 48px 80px;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-cta {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .contact-cta span { color: var(--accent); }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 24px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 28px;
+    background: var(--card);
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.2s;
+    border-left: 3px solid transparent;
+  }
+  .contact-link:hover {
+    background: #15152a;
+    border-left-color: var(--accent);
+  }
+  .contact-link-info { display: flex; flex-direction: column; gap: 3px; }
+  .contact-link-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .contact-link-value {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .contact-link-arrow {
+    color: var(--muted);
+    transition: color 0.2s, transform 0.2s;
+  }
+  .contact-link:hover .contact-link-arrow {
+    color: var(--accent);
+    transform: translate(4px, -4px);
+  }
+
+  @media (max-width: 768px) {
+    #contact { grid-template-columns: 1fr; padding: 80px 24px; }
+  }
+</style>

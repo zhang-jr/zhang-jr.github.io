@@ -1,0 +1,100 @@
+---
+import { PROJECTS } from '@data/site';
+---
+
+<section id="projects">
+  <div class="fade-up">
+    <div class="section-tag">// 03 · Projects</div>
+    <h2 class="section-title">Selected<br/>Work</h2>
+  </div>
+
+  <div class="projects-list">
+    {PROJECTS.map(({ num, name, desc, tags, href }) => (
+      <a href={href} class="project-item fade-up">
+        <span class="project-num">{num}</span>
+        <div class="project-info">
+          <h3>{name}</h3>
+          <p>{desc}</p>
+        </div>
+        <div class="project-tech">
+          {tags.map((t) => <span class="tag">{t}</span>)}
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  #projects {
+    padding: 120px 48px;
+    border-top: 1px solid var(--border);
+  }
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 64px;
+  }
+  .project-item {
+    display: grid;
+    grid-template-columns: 64px 1fr auto auto;
+    align-items: center;
+    gap: 40px;
+    padding: 32px 40px;
+    background: var(--card);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .project-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.4s ease;
+  }
+  .project-item:hover::after { width: 100%; }
+  .project-item:hover { background: #15152a; }
+  .project-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .project-info h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .project-info p {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+  .project-tech {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .project-arrow {
+    font-size: 1.2rem;
+    color: var(--muted);
+    transition: color 0.2s, transform 0.2s;
+  }
+  .project-item:hover .project-arrow {
+    color: var(--accent);
+    transform: translate(4px, -4px);
+  }
+
+  @media (max-width: 768px) {
+    #projects { padding: 80px 24px; }
+    .project-item { grid-template-columns: 1fr; gap: 12px; padding: 24px; }
+    .project-num, .project-arrow { display: none; }
+    .project-tech { justify-content: flex-start; }
+  }
+</style>
