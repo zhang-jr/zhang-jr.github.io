@@ -2,10 +2,10 @@
 import { CONTACT } from '@data/site';
 
 const links = [
-  { label: 'Email',     value: CONTACT.email,            href: `mailto:${CONTACT.email}`,   external: false },
-  { label: 'GitHub',    value: CONTACT.github.label,     href: CONTACT.github.href,          external: true  },
-  { label: 'LinkedIn',  value: CONTACT.linkedin.label,   href: CONTACT.linkedin.href,        external: true  },
-  { label: 'X / Twitter', value: CONTACT.twitter.label, href: CONTACT.twitter.href,         external: true  },
+  { label: 'Email',  value: CONTACT.email,          href: `mailto:${CONTACT.email}`, external: false },
+  { label: 'GitHub', value: CONTACT.github.label,   href: CONTACT.github.href,       external: true  },
+  ...(CONTACT.linkedin ? [{ label: 'LinkedIn',    value: CONTACT.linkedin.label,   href: CONTACT.linkedin.href,   external: true }] : []),
+  ...(CONTACT.twitter  ? [{ label: 'X / Twitter', value: CONTACT.twitter.label,    href: CONTACT.twitter.href,    external: true }] : []),
 ];
 ---
 
